@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>List Of Courses </title>
+<style>
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgb(130, 106, 251);
+}
+.container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.container header {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 200px;
+  background: rgb(253,153,51);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.nav,
+.nav .nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav {
+  justify-content: space-between;
+}
+p{
+   color:red;
+   text-align:center;
+   text-size:40px;
+ }
+a {
+  color: #fff;
+  text-decoration: none;
+}
+.nav .logo {
+  font-size: 22px;
+  font-weight: 500;
+}
+.nav .nav-links {
+  column-gap: 20px;
+  list-style: none;
+}
+.nav .nav-links a {
+  transition: all 0.2s linear;
+}
+.nav.openSearch .nav-links a {
+  opacity: 0;
+  pointer-events: none;
+}
+.nav .search-icon {
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.nav .search-box {
+  position: absolute;
+  right: 250px;
+  height: 45px;
+  max-width: 555px;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s linear;
+}
+.nav.openSearch .search-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+.search-box .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  left: 15px;
+  color: #4a98f7;
+  transform: translateY(-50%);
+}
+.search-box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 0 15px 0 45px;
+}
+
+.nav .navOpenBtn,
+.nav .navCloseBtn {
+  display: none;
+}
+
+/* responsive */
+@media screen and (max-width: 1160px) {
+  .nav {
+    padding: 15px 100px;
+  }
+  .nav .search-box {
+    right: 150px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .nav {
+    padding: 15px 50px;
+  }
+  .nav .search-box {
+    right: 100px;
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .nav .navOpenBtn,
+  .nav .navCloseBtn {
+    display: block;
+  }
+  .nav {
+    padding: 15px 20px;
+  }
+  .nav .nav-links {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    max-width: 280px;
+    width: 100%;
+    padding-top: 100px;
+    row-gap: 30px;
+    flex-direction: column;
+    background-color: #11101d;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    z-index: 100;
+  }
+  .nav.openNav .nav-links {
+    left: 0;
+  }
+  .nav .navOpenBtn {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .nav .navCloseBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .nav .search-box {
+    top: calc(100% + 10px);
+    max-width: calc(100% - 20px);
+    right: 50%;
+    transform: translateX(50%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+      <i class="uil uil-bars navOpenBtn"></i>
+      <a href="#" class="logo">VVIT</a>
+       
+       
+      <ul class="nav-links">
+        <i class="uil uil-times navCloseBtn"></i>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="CourseList.html">Courses</a></li>
+        <li><a href="ContactUs.html">Contact Us</a></li>
+      </ul>
+
+      <i class="uil uil-search search-icon" id="searchIcon"></i>
+      <div class="search-box">
+        <i class="uil uil-search search-icon"></i>
+        <input type="text" placeholder="Search here..." />
+      </div>
+    </nav>
+    <br>
+    <br>
+<div class="container">
+    <header>List Of Courses In R20 Regulation</header>
+    <br>
+    <br>
+   <table border=1>
+   <tr>
+     <th>Semister</th>
+     <th>Subject Code</th>
+     <th>Subject Name</th>
+     </tr>
+     <tr>
+       <td>1-1</td>
+       <td>C111</td>
+       <td>MATHEMATICS-1</td>
+       </tr>
+       <tr>
+       <td>1-1</td>
+       <td>C112</td>
+       <td>APPLIED CHEMISTRY</td>
+       </tr>
+       <tr>
+       <td>1-1</td>
+       <td>C113</td>
+       <td>BASIC ELECTRICAL&ELECTRONIC ENGINEERING</td>
+       </tr>
+       <tr>
+       <td>1-1</td>
+       <td>C114</td>
+       <td>C PROGRAMMING</td>
+       </tr>
+       <tr>
+       <td>1-1</td>
+       <td>C11A</td>
+       <td>APPLIED CHEMISTY LAB</td>
+       </tr>
+       <td>1-1</td>
+       <td>C11B</td>
+       <td>C PROGRAMMING LAB</td>
+       </tr>
+       <td>1-1</td>
+       <td>C11C</td>
+       <td>BASIC ELECTRICAL&ELECTRONIC ENGINEERING LAB</td>
+       </tr>
+       <td>1-2</td>
+       <td>C121</td>
+       <td>MATHEMATICS-2</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C122</td>
+       <td>APPLIED PHYSICS</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C123</td>
+       <td>PYTHON PROGRAMMING</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C124</td>
+       <td>DIGITAL LOGIC & DESIGN</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C125</td>
+       <td>ENGLISH</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C12A</td>
+       <td>APPLIED PHYSICS LAB</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C12B</td>
+       <td>PHYTHON PROGRAMMING LAB</td>
+       </tr>
+       <tr>
+       <td>1-2</td>
+       <td>C12C</td>
+       <td>ENGLISH LAB</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C211</td>
+       <td>MATHEMATICS-3</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C212</td>
+       <td>MFCS</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C213</td>
+       <td>DATA STRUCTURES USING C</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C214</td>
+       <td>JAVA PROGRAMMING</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C215</td>
+       <td>SOFTWARE ENGINEERING</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C21A</td>
+       <td>JAVA PROGRAMMING LAB</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C21B</td>
+       <td>DATA STRUCTURES USING C LAB</td>
+       </tr>
+       <tr>
+       <td>2-1</td>
+       <td>C21C</td>
+       <td>ADVANCED PYTHON PROGRAMMING LAB</td>
+       </tr>
+       <tr>
+       <td>2-2</td>
+       <td>C221</td>
+       <td>PROBABILITY & STASTITICS</td>
+       </tr>
+       <tr>
+       <td>2-2</td>
+       <td>C222</td>
+       <td>ADVANCE JAVA PROGRAMMING</td>
+       </tr>
+       <tr>
+       <td>2-2</td>
+       <td>C223</td>
+       <td>DATABASE & MANAGEMENT SYSTEM</td>
+       </tr>
+       <tr>
+       <td>2-2</td>
+       <td>C224</td>
+       <td>COMPUTER ORGANIZATION</td>
+       </tr>
+       <tr>
+       <td>2-2</td>
+       <td>C225</td>
+       <td>OPERATING SYSTEMS</td>
+       </tr>
+       <tr>
+       <td>2-2</td>
+       <td>C22A</td>
+       <td>ADVANCE JAVA PROGRAMMING LAB</td>
+       </tr>
+        <tr>
+       <td>2-2</td>
+       <td>C22B</td>
+       <td>DATABASE & MANAGEMENT SYSTEM LAB</td>
+       </tr>
+        <tr>
+       <td>2-2</td>
+       <td>C22C</td>
+       <td>R PROGRAMMING LAB</td>
+       </tr>
+   </table>
+   </div>
+</body>
+</html>
