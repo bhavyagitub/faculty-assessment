@@ -23,13 +23,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 @WebServlet("/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    int a,b,c,f,g,h;
+    int a,b,c;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
@@ -49,54 +50,72 @@ public class UploadServlet extends HttpServlet {
              Workbook workbook = Workbook.getWorkbook(fileContent);
            
              if (e.equalsIgnoreCase("descriptive")) {
-                   insertDescriptive(workbook,conn);
+                   insertDescriptive(workbook, conn);
              }
              else if(e.equalsIgnoreCase("assignment")) {
-            	 insertAssignment(workbook,conn);
-            	 
+            	 insertAssignment(workbook, conn); 
              }
-             String fileName = "file1";
-             String tempDirPath = System.getProperty("java.io.tmpdir");
-             File tempFile = new File(tempDirPath, fileName);
-             tempFile.delete();
-             if (tempFile.delete()) {
-                 System.out.println("Temporary file deleted successfully.");
-             } else {
-                 System.out.println("Failed to delete temporary file.");
+             else if(e.equalsIgnoreCase("objective")) {
+            	 insertObjective(workbook, conn); 
              }
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("error.jsp"); // Redirect to an error page
+            e.printStackTrace(); // Redirect to an error page
         }
+        response.sendRedirect("Upload.html");
     }
-	
-    private void insertAssignment(Workbook workbook, Connection con)throws SQLException {
-    	for (Sheet sheet : workbook.getSheets()) {
+    private void insertObjective(Workbook workbook, Connection conn) throws SQLException {
+		for (Sheet sheet : workbook.getSheets()) {
             for (int row = 1; row < sheet.getRows(); row++) { // Assuming the first row contains headers
                  Cell[] cells = sheet.getRow(row);
              
              // Step 4: Insert data into MySQL
                  
-
-                      String sql = "INSERT INTO assignment(REGDNO, StudentName, A1, Attainment) VALUES (?, ?, ?, ?)";
-                      Connection conn2 = con;
-                      PreparedStatement ps=conn2.prepareStatement(sql);
-					
+                      Connection con=conn;
+                      String sql = "INSERT INTO objective(REGDNO, StudentName, O1,Attainment) VALUES (?, ?, ?, ?)";
+					  PreparedStatement statement1 = con.prepareStatement(sql);
              
              // Set parameters based on your Excel columns
-                      ps.setString(1, cells[0].getContents());
-                      ps.setString(2, cells[1].getContents());
+                      statement1.setString(1, cells[0].getContents());
+                      statement1.setString(2, cells[1].getContents());
                       a =Integer.parseInt(cells[2].getContents());
-                      ps.setInt(3,a);
-                      ps.setInt(4,calculate(a));
-                   
-                 }
-             } 
+                      statement1.setInt(3,a);
+                      statement1.setInt(4, calculate(a));
+             
+                      statement1.executeUpdate();
+             
+                      statement1.close();
+         }
+     } 
          workbook.close();
 		
 	}
-
-	private void insertDescriptive(Workbook workbook,Connection con) throws SQLException {
+	private void insertAssignment(Workbook workbook, Connection conn) throws SQLException {
+		for (Sheet sheet : workbook.getSheets()) {
+            for (int row = 1; row < sheet.getRows(); row++) { // Assuming the first row contains headers
+                 Cell[] cells = sheet.getRow(row);
+             
+             // Step 4: Insert data into MySQL
+                 
+                      Connection con=conn;
+                      String sql = "INSERT INTO assignment(REGDNO, StudentName, A1,Attainment) VALUES (?, ?, ?, ?)";
+					  PreparedStatement statement1 = con.prepareStatement(sql);
+             
+             // Set parameters based on your Excel columns
+                      statement1.setString(1, cells[0].getContents());
+                      statement1.setString(2, cells[1].getContents());
+                      a =Integer.parseInt(cells[2].getContents());
+                      statement1.setInt(3,a);
+                      statement1.setInt(4, calculateAttain(a));
+             
+                      statement1.executeUpdate();
+             
+                      statement1.close();
+         }
+     } 
+         workbook.close();
+		
+	}
+	private void insertDescriptive(Workbook workbook, Connection con) throws SQLException {
     	for (Sheet sheet : workbook.getSheets()) {
             for (int row = 1; row < sheet.getRows(); row++) { // Assuming the first row contains headers
                  Cell[] cells = sheet.getRow(row);
@@ -105,8 +124,8 @@ public class UploadServlet extends HttpServlet {
                  
 
                       String sql = "INSERT INTO marks(REGDNO, StudentName, Q1, Q2, Q3, Q1Attain, Q2Attain, Q3Attain, Total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                      Connection conn1 = con;
-					  PreparedStatement statement = conn1.prepareStatement(sql);
+                     
+					  PreparedStatement statement = con.prepareStatement(sql);
              
              // Set parameters based on your Excel columns
                       statement.setString(1, cells[0].getContents());
