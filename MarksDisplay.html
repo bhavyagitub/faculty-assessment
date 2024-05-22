@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Display</title>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin:0px;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: url("https://www.vvitguntur.com/images/slider3/vvit_drone_4k-min.jpeg"), #000;
+  
+}
+.container header {
+  font-size: 2.0rem;
+  color:white;
+  font-weight: 500;
+  text-align: center;
+}
+.container{
+  color :white;
+  width: 400px;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  }
+button {
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+</style>
+</head>
+<body>
+<section class="container">
+  <form action="DisplayServlet" method="post" enctype="multipart/form-data">
+  <h2>Welcome To Display Page</h2>
+  <br>
+  <label>Select Mid: </label>
+   <select name="mid" >
+  <option value="">Select Mid</option>
+  <option value="Mid-1">Mid-1</option>
+  <option value="Mid-2">Mid-2</option>
+  </select>
+  <br>
+  <br>
+  <label>  Examination Type:   </label> 
+  <select name="exam" >
+  <option value="">Select Examination</option>
+  <option value="Assignment">Assignment</option>
+  <option value="Seminar">Seminar</option>
+  <option value="Objective">Objective</option>
+  <option value="Descriptive">Descriptive</option>
+  </select>
+  <br>
+  <br>
+  <input type="submit" value="Display">
+  </form> 
+</section>
+</body>
+</html>
